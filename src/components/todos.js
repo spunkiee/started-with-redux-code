@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { store } from "../store/index";
+import React from "react";
 import { v4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Todos = () => {
-  const [todos, setTodos] = useState(store.getState());
-
-  // useEffect(() => {
-  //   // whenever there is change in state, our local state will get update
-  //   const subscribed = store.subscribe(() => {
-  //     setTodos(store.getState());
-  //   });
-  //   return () => {
-  //     store.unsubscribe(subscribed);
-  //   };
-  // }, []);
-
-  store.subscribe(() => {
-    setTodos(store.getState());
-  });
+  // This is the way we used in production
+  const todos = useSelector(state => state);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -28,7 +16,7 @@ export const Todos = () => {
           const value = e.target.value;
           if (e.key === "Enter") {
             e.target.value = "";
-            store.dispatch({
+            dispatch({
               type: "ADD_TODO",
               text: value,
               id: v4()
