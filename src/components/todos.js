@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const Todos = () => {
   // This is the way we used in production
-  const todos = useSelector(state => state);
+  // state.todos because we are combinig to reducers in reducers/index.js
+  const todos = useSelector(state => state.todos);
   const dispatch = useDispatch();
 
   return (
