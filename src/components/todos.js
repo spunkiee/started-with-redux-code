@@ -42,3 +42,6 @@ export const Todos = () => {
     </div>
   );
 };
+
+// this is not the way we used in production
+// This is just to set up base
